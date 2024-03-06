@@ -5,9 +5,10 @@ public static class TriggerExtensions
     /// <summary>
     /// Sets up a daily schedule with a default interval of *every-minute* unless overridden by the action
     /// by calling WithInterval / WithIntervalInHours / WithIntervalInMinutes.
-    ///
-    /// For the sake of clarity, you probably want to use WithDailyConfiguredTimeIntervalSchedule instead.
     /// </summary>
+    /// <remarks>
+    /// For the sake of clarity, you probably want to use WithDailyConfiguredTimeIntervalSchedule instead.
+    /// </remarks>
     [Obsolete("Use WithDailyConfiguredTimeIntervalSchedule with default interval params instead.")]
     public static ITriggerConfigurator WithDailyTimeIntervalSchedule(
         this ITriggerConfigurator triggerBuilder,
@@ -45,7 +46,9 @@ public static class TriggerExtensions
     /// <returns>Mutated trigger configurator</returns>
     public static ITriggerConfigurator WithDailyConfiguredTimeIntervalSchedule(
         this ITriggerConfigurator triggerBuilder,
-        Action<DailyTimeIntervalScheduleBuilder>? action = null, int defaultInterval=12, IntervalUnit defaultIntervalUnit=IntervalUnit.Hour)
+        Action<DailyTimeIntervalScheduleBuilder>? action = null,
+        int defaultInterval = 12,
+        IntervalUnit defaultIntervalUnit = IntervalUnit.Hour)
     {
         DailyTimeIntervalScheduleBuilder builder = DailyTimeIntervalScheduleBuilder.Create();
         builder.WithInterval(defaultInterval, defaultIntervalUnit);
